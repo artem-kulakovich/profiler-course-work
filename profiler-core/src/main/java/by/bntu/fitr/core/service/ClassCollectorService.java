@@ -11,7 +11,7 @@ public interface ClassCollectorService {
 
     List<Class> getClassesMarkedWithAnnotation(final String annotationName, final List<String> classesName);
 
-    List<String> getClassesNameWithPackages(final String rootPath);
+    List<String> getClassesNameWithPackages(final String rootPath, final String packageForScan);
 
     Map<Class, List<String>> getMethodsMarkedWithAnnotations(final String annotationName,
                                                              final List<Class> classes);

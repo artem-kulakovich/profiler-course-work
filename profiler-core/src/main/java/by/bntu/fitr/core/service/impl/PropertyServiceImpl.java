@@ -1,9 +1,7 @@
 package by.bntu.fitr.core.service.impl;
 
-import by.bntu.fitr.core.constant.CommonConstant;
 import by.bntu.fitr.core.constant.ExceptionConstant;
-import by.bntu.fitr.core.exception.CantLoadProfilerPropertyException;
-import by.bntu.fitr.core.exception.PropertyAttributeNotFoundException;
+import by.bntu.fitr.core.exception.handler.ProfilerCoreExceptionHandler;
 import by.bntu.fitr.core.service.PropertyService;
 
 import java.io.FileInputStream;
@@ -12,6 +10,7 @@ import java.util.Properties;
 
 
 public class PropertyServiceImpl implements PropertyService {
+    private final ProfilerCoreExceptionHandler profilerCoreExceptionHandler = ProfilerCoreExceptionHandler.getInstance();
     private Properties properties;
 
     public void loadProperties(final String path) {
@@ -19,7 +18,7 @@ public class PropertyServiceImpl implements PropertyService {
             properties = new Properties();
             properties.load(fileInputStream);
         } catch (IOException e) {
-            throw new CantLoadProfilerPropertyException(ExceptionConstant.CANT_LOAD_PROPERTY_FILE_EXCEPTION);
+            profilerCoreExceptionHandler.handle(ExceptionConstant.CANT_LOAD_PROPERTY_FILE_EXCEPTION);
         }
     }
 
@@ -39,17 +38,11 @@ public class PropertyServiceImpl implements PropertyService {
     }
 
     private String getIfPropertyExist(final String propertyAttrName) {
-        if (propertyAttrName == null) {
-            throw new PropertyAttributeNotFoundException(ExceptionConstant.ATTRIBUTE_NOT_FOUND_EXCEPTION);
-        }
-
+        profilerCoreExceptionHandler.handle(propertyAttrName == null, true,
+                ExceptionConstant.ATTRIBUTE_NOT_FOUND_EXCEPTION);
         String property = getProperties().getProperty(propertyAttrName);
-
-        if (property == null) {
-            throw new PropertyAttributeNotFoundException(ExceptionConstant.ATTRIBUTE_NOT_FOUND_EXCEPTION + " "
-                    + propertyAttrName);
-        }
-
+        profilerCoreExceptionHandler.handle(property == null, true,
+                ExceptionConstant.ATTRIBUTE_NOT_FOUND_EXCEPTION + " " + propertyAttrName );
         return property;
     }
 

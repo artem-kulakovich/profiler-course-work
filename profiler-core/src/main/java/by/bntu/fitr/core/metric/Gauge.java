@@ -1,4 +1,4 @@
-package by.bntu.fitr.core;
+package by.bntu.fitr.core.metric;
 
 import java.time.LocalDateTime;
 import java.util.Map;
@@ -17,10 +17,6 @@ public class Gauge {
 
     public LocalDateTime getStartedDate() {
         return startedDate;
-    }
-
-    public void setStartedDate(LocalDateTime startedDate) {
-        this.startedDate = startedDate;
     }
 
     @Override

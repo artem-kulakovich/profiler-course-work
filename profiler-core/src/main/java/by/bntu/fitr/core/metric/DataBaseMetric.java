@@ -1,13 +1,18 @@
-package by.bntu.fitr.metric.database;
+package by.bntu.fitr.core.metric;
 
 import java.time.LocalDateTime;
 
-public class DataBaseMetric {
+public class DataBaseMetric extends AbstractMetric {
+    private static Long idGenerator = 1l;
+    private Long id;
     private String connectionName;
-    private LocalDateTime startedDate;
     private Long executionTimeStart;
     private Long executionTimeEnd;
     private Long executionTime;
+
+    public DataBaseMetric() {
+        id = idGenerator++;
+    }
 
     public String getConnectionName() {
         return connectionName;
@@ -15,14 +20,6 @@ public class DataBaseMetric {
 
     public void setConnectionName(String connectionName) {
         this.connectionName = connectionName;
-    }
-
-    public LocalDateTime getStartedDate() {
-        return startedDate;
-    }
-
-    public void setStartedDate(LocalDateTime startedDate) {
-        this.startedDate = startedDate;
     }
 
     public Long getExecutionTimeStart() {
@@ -50,7 +47,7 @@ public class DataBaseMetric {
     public String toString() {
         return "DataBaseMetric{" +
                 "connectionName='" + connectionName + '\'' +
-                ", startedDate=" + startedDate +
+                ", startedDate=" + getStartedDate() +
                 ", executionTimeStart=" + executionTimeStart +
                 ", executionTimeEnd=" + executionTimeEnd +
                 ", executionTime=" + (executionTimeEnd - executionTimeStart) +

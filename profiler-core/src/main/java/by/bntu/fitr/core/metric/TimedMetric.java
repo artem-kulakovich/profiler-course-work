@@ -1,18 +1,15 @@
-package by.bntu.fitr.core;
+package by.bntu.fitr.core.metric;
 
 import java.time.LocalDateTime;
 import java.util.Vector;
 
 
-public class TimedMetric {
+public class TimedMetric extends AbstractMetric {
     public static Long idGenerator = 1l;
     private Long id;
-    private String methodName;
-    private String className;
     private Long executionTime;
     private Long executionTimeStart;
     private Long executionTimeEnd;
-    private LocalDateTime startedDate;
     private LocalDateTime endedDate;
 
     public TimedMetric() {
@@ -22,14 +19,6 @@ public class TimedMetric {
 
     public Long getExecutionTime() {
         return executionTimeEnd - executionTimeStart;
-    }
-
-    public LocalDateTime getStartedDate() {
-        return startedDate;
-    }
-
-    public void setStartedDate(LocalDateTime startedDate) {
-        this.startedDate = startedDate;
     }
 
     public LocalDateTime getEndedDate() {
@@ -48,32 +37,15 @@ public class TimedMetric {
         this.executionTimeEnd = executionTimeEnd;
     }
 
-    public String getMethodName() {
-        return methodName;
-    }
-
-    public void setMethodName(String methodName) {
-        this.methodName = methodName;
-    }
-
-    public String getClassName() {
-        return className;
-    }
-
-    public void setClassName(String className) {
-        this.className = className;
-    }
-
     @Override
     public String toString() {
         return "TimedMetric{" +
                 "id=" + id +
-                ", methodName='" + methodName + '\'' +
-                ", className='" + className + '\'' +
+                ", methodName='" + getMethodName() + '\'' +
                 ", executionTime=" + (executionTimeEnd - executionTimeStart) +
                 ", executionTimeStart=" + executionTimeStart +
                 ", executionTimeEnd=" + executionTimeEnd +
-                ", startedDate=" + startedDate +
+                ", startedDate=" + getStartedDate() +
                 ", endedDate=" + endedDate +
                 '}';
     }

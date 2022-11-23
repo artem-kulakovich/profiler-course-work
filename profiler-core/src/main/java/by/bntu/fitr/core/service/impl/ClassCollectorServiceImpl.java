@@ -3,24 +3,18 @@ package by.bntu.fitr.core.service.impl;
 import by.bntu.fitr.core.annotations.Metric;
 import by.bntu.fitr.core.annotations.Timed;
 import by.bntu.fitr.core.constant.CommonConstant;
-import by.bntu.fitr.core.constant.ExceptionConstant;
-import by.bntu.fitr.core.context.PropertyContext;
-import by.bntu.fitr.core.exception.NotValidPackageForScanException;
 import by.bntu.fitr.core.service.ClassCollectorService;
 import by.bntu.fitr.core.util.FileUtil;
 
 import java.io.File;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class ClassCollectorServiceImpl implements ClassCollectorService {
-    private final PropertyContext propertyContext = PropertyContext.getInstance();
 
     @Override
     public List<Class> getClassesMarkedWithAnnotation(final String annotationName, final List<String> classesName) {
@@ -41,13 +35,9 @@ public class ClassCollectorServiceImpl implements ClassCollectorService {
     }
 
     @Override
-    public List<String> getClassesNameWithPackages(final String rootPath) {
-        if (rootPath == null ) {
-            throw new NotValidPackageForScanException(ExceptionConstant.NOT_VALID_PACKAGE_FOR_SCAN_ATTR);
-        }
-
+    public List<String> getClassesNameWithPackages(final String rootPath, final String packageForScan) {
         List<String> classesName = new ArrayList<>();
-        getClassesNameWithPackages(new File(rootPath), classesName, propertyContext.getPackageForScan());
+        getClassesNameWithPackages(new File(rootPath), classesName, packageForScan);
         return classesName;
     }
 

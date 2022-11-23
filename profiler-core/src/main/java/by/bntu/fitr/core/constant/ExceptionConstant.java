@@ -7,4 +7,5 @@ public interface ExceptionConstant {
     String ATTRIBUTE_NOT_FOUND_EXCEPTION = "Attribute not found, please check if this attribute exists!";
     String CANT_CONNECT_TO_DATABASE_EXCEPTION = "Cant connect to database, please check if connection parameters correct";
     String INCORRECT_VALUE_IN_PROPERTY_FILE_EXCEPTION = "Incorrect value in property file exception! Please, check the documentation!";
+    String CANT_GET_METRIC_REGISTRY_EXCEPTION = "Couldn't get metric registry, check properties.";
 }

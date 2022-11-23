@@ -1,4 +1,4 @@
-package by.bntu.fitr.core;
+package by.bntu.fitr.core.service;
 
 public interface CollectBasicMetricService {
 

@@ -1,8 +1,9 @@
 package by.bntu.fitr.core.bytecode;
 
 
-import by.bntu.fitr.core.MetricRegistry;
-import by.bntu.fitr.core.TimedMetric;
+import by.bntu.fitr.core.metric.AbstractMetric;
+import by.bntu.fitr.core.metric.registry.MetricRegistry;
+import by.bntu.fitr.core.metric.TimedMetric;
 import net.bytebuddy.asm.Advice;
 
 import java.lang.reflect.Method;
@@ -11,6 +12,7 @@ import java.time.LocalDateTime;
 
 public class TimedMetricAdvice {
 
+    /*
     @Advice.OnMethodEnter(suppress = Throwable.class)
     public static void onMethodEnter(@Advice.This Object thisObject,
                                      @Advice.Origin Method method) {
@@ -28,6 +30,25 @@ public class TimedMetricAdvice {
         TimedMetric timedMetric = MetricRegistry.getInstance().getTimedMetricRegistry().getTimedMetric();
         timedMetric.setEndedDate(LocalDateTime.now());
         timedMetric.setExecutionTimeEnd(System.currentTimeMillis());
+    }
+
+     */
+
+    @Advice.OnMethodEnter
+    public static TimedMetric enter() throws Exception {
+        TimedMetric timedMetric = new TimedMetric();
+        timedMetric.setExecutionTimeStart(System.currentTimeMillis());
+        return timedMetric;
+    }
+
+    @Advice.OnMethodExit
+    public static void exit(@Advice.Origin Method method,
+                            @Advice.This Object object,
+                            @Advice.Enter TimedMetric timedMetric) throws Exception {
+        long end = System.currentTimeMillis();
+        timedMetric.setEndedDate(LocalDateTime.now());
+        timedMetric.setMethodName(method.getName());
+        timedMetric.setExecutionTimeEnd(end);
     }
     /*
     is working
