@@ -19,5 +19,7 @@ public interface CommonConstant {
     String DATABASE_METRIC_REGISTRY = "DATABASE_REGISTRY";
     String TIMED_METRIC_REGISTRY = "TIMED_REGISTRY";
     String GAUGE_REGISTRY = "GAUGE_REGISTRY";
+    String TIMED_METRIC_TYPE = "Timed metric";
+    String DATABASE_METRIC_TYPE = "Database metric";
 
 }

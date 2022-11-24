@@ -1,6 +1,7 @@
 package by.bntu.fitr.core.bytecode;
 
 
+import by.bntu.fitr.core.constant.CommonConstant;
 import by.bntu.fitr.core.metric.AbstractMetric;
 import by.bntu.fitr.core.metric.registry.MetricRegistry;
 import by.bntu.fitr.core.metric.TimedMetric;
@@ -48,7 +49,9 @@ public class TimedMetricAdvice {
         long end = System.currentTimeMillis();
         timedMetric.setEndedDate(LocalDateTime.now());
         timedMetric.setMethodName(method.getName());
+        timedMetric.setMetricType(CommonConstant.TIMED_METRIC_TYPE);
         timedMetric.setExecutionTimeEnd(end);
+        MetricRegistry.getInstance().getMetricRegistry(CommonConstant.TIMED_METRIC_REGISTRY).addMetric(timedMetric);
     }
     /*
     is working
