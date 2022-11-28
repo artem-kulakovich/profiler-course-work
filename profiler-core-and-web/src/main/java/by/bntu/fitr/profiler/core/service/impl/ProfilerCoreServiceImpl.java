@@ -1,18 +1,22 @@
-package by.bntu.fitr.core.service.impl;
+package by.bntu.fitr.profiler.core.service.impl;
 
-import by.bntu.fitr.core.metric.registry.*;
-import by.bntu.fitr.core.bytecode.ByteCodeExecutor;
-import by.bntu.fitr.core.constant.CommonConstant;
-import by.bntu.fitr.core.constant.ExceptionConstant;
-import by.bntu.fitr.core.context.ApplicationContext;
-import by.bntu.fitr.core.context.PropertyContext;
-import by.bntu.fitr.core.exception.handler.ProfilerCoreExceptionHandler;
-import by.bntu.fitr.core.service.ClassCollectorService;
-import by.bntu.fitr.core.service.PropertyService;
-import by.bntu.fitr.core.service.ProfilerCoreService;
-import by.bntu.fitr.core.util.CommonUtil;
-import by.bntu.fitr.core.util.FileUtil;
 
+
+import by.bntu.fitr.profiler.core.bytecode.ByteCodeExecutor;
+import by.bntu.fitr.profiler.core.constant.CommonConstant;
+import by.bntu.fitr.profiler.core.constant.ExceptionConstant;
+import by.bntu.fitr.profiler.core.context.ApplicationContext;
+import by.bntu.fitr.profiler.core.context.PropertyContext;
+import by.bntu.fitr.profiler.core.exception.handler.ProfilerCoreExceptionHandler;
+import by.bntu.fitr.profiler.core.metric.registry.DataBaseMetricRegistry;
+import by.bntu.fitr.profiler.core.metric.registry.GaugeRegistry;
+import by.bntu.fitr.profiler.core.metric.registry.MetricRegistry;
+import by.bntu.fitr.profiler.core.metric.registry.TimedMetricRegistry;
+import by.bntu.fitr.profiler.core.service.ClassCollectorService;
+import by.bntu.fitr.profiler.core.service.ProfilerCoreService;
+import by.bntu.fitr.profiler.core.service.PropertyService;
+import by.bntu.fitr.profiler.core.util.CommonUtil;
+import by.bntu.fitr.profiler.core.util.FileUtil;
 
 import java.net.URL;
 import java.util.Arrays;
